@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Lottery Simulator</title>
+</head>
+
+<body>
+  <script language="javascript">
+    //Generating (w/o repeats) and outputing picks and lucky ball
+    num0 = Math.floor(Math.random() * 48) + 1;
+    num1 = Math.floor(Math.random() * 48) + 1;
+    while (num1 == num0) {
+        num1 = Math.floor(Math.random() * 48) + 1;
+    }
+    num2 = Math.floor(Math.random() * 48) + 1;
+    while (num2 == num1 || num2 == num0) {
+        num2 = Math.floor(Math.random() * 48) + 1;
+    }
+    num3 = Math.floor(Math.random() * 48) + 1;
+    while (num3 == num2|| num3 == num1 || num3 == num0) {
+        num3 = Math.floor(Math.random() * 48) + 1;
+    }
+    num4 = Math.floor(Math.random() * 48) + 1;
+    while (num4 == num3 || num4 == num2|| num4 == num1 || num4 == num0) {
+        num4 = Math.floor(Math.random() * 48) + 1;
+    }
+    pick = [num0, num1, num2, num3, num4];
+    ball = Math.floor(Math.random() * 18) + 1;
+    document.write("Your pick: " + pick[0] + " " + pick[1] + " " + pick[2] + " " + pick[3] + " " + pick[4] + " lucky " + ball);
+    pick.sort(function(a, b){return a-b});
+    document.write("<br>");
+    document.write("Your pick sorted: " + pick[0] + " " + pick[1] + " " + pick[2] + " " + pick[3] + " " + pick[4] + " lucky " + ball);
+    document.write("<br>");
+    document.write("<br>");
+
+    //Outputing winning numbers and lucky ball
+    winningNumbers = [12, 15, 24, 35, 48];
+    winningBall = 3;
+    document.write("Winning numbers: " + winningNumbers[0] + " " + winningNumbers[1] + " " + winningNumbers[2] + " " + winningNumbers[3] + " " + winningNumbers[4] + " lucky " + winningBall);
+    document.write("<br>");
+    document.write("<br>");
+
+    //Finding the number of matches
+    matches = 0;
+    i = 0;
+    j = 0;
+    while (i <= 4 && j <= 4) {
+        if (pick[i] == winningNumbers[j]) {
+            matches++;
+            i++;
+            j++;
+        } else if (pick[i] < winningNumbers[j]) {
+            i++;
+        } else {
+            j++;
+        }
+    }
+    document.write("RESULTS:");
+    document.write("<br>");
+    document.write(matches + " of your picks matched the winning numbers");
+    document.write("<br>");
+    if (ball == winningBall) {
+        document.write("Your lucky ball MATCHED the winning lucky ball");
+    } else {
+        document.write("Your lucky ball did NOT match the winning lucky ball");
+    }
+    document.write("<br>");
+
+    //Determining the payout
+    document.write("Your winnings: ");
+    if (matches == 5) {
+        if (ball == winningBall) {
+            document.write("$7000 a WEEK for LIFE");
+        } else {
+            document.write("$25,000 a YEAR for LIFE");
+        }
+    } else if (matches == 4) {
+        if (ball == winningBall) {
+            document.write("$5,000");
+        } else {
+            document.write("$200");
+        }
+    } else if (matches == 3) {
+        if (ball == winningBall) {
+            document.write("$150");
+        } else {
+            document.write("$20");
+        }
+    } else if (matches == 2) {
+        if (ball == winningBall) {
+            document.write("$25");
+        } else {
+            document.write("$3");
+        }
+    } else if (matches == 1) {
+        if (ball == winningBall) {
+            document.write("$6");
+        } else {
+            document.write("$0");
+        }
+    } else {
+        if (ball == winningBall) {
+            document.write("$4");
+        } else {
+            document.write("$0");
+        }
+    }
+
+  </script>
+
+</body>
+
+</html>
